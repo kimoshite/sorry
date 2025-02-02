@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Îmi pare rău!</title>
+    <title>Îmi pare rău</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #F3F3F3;
-            color: #333;
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #7ea38c;
+            color: #0d281e;
             text-align: center;
         }
         .container {
-            max-width: 800px;
+            max-width: 950px;
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(68, 121, 74, 0.7);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             transition: transform 0.5s ease-in-out;
@@ -28,8 +29,7 @@
             margin-bottom: 20px;
         }
         .apology {
-            color: rgb(28, 11, 125);
-            text-align: center;
+            color: rgb(16, 12, 138);
             display: none;
         }
         #ascii-art {
@@ -48,7 +48,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExM28yYjRrc2xrc3poNHRuY3luY3M5OHZxOXUzcXp1bWt3ZzNkMXU1ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jyVX5SCxdrKTfsOp77/giphy.gif");
+            background-image: url("https://i.pinimg.com/736x/93/f5/f9/93f5f9d483dd1dde02674ba949666bec.jpg");
             background-position: center;
             background-size: 100%;
             background-repeat: no-repeat;
@@ -97,13 +97,16 @@
             outline: none;
         }
         button:hover {
-            box-shadow: 0 0 20px rgba(1, 40, 16, 0.5);
+            box-shadow: 0 0 20px rgba(2, 71, 9, 0.5);
             transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-     <audio src="file:///C:/Users/nechi/Downloads/dream.mp3" controls></audio>
+    <audio controls autoplay loop>
+        <source src="dream.mp3" type="audio/mpeg">
+        <source src="dream.wav" type="audio/wav">
+    </audio>
     <div class="background"></div>
     <div class="container">
         <h1>Îmi pare rău, Robert.</h1> <!-- Updated heading -->
@@ -144,8 +147,8 @@
         <div class="apology" id="apology2">pare </div>
         <div class="apology" id="apology3">rău </div>
         
-        <div class="sorry-button-container"> <!-- Container for the Sorry button -->
-            <button id="sorryButton" onclick="displayAllSorries()">Sorry</button>
+        <div class="sorry-container"> <!-- Container for the Sorry button -->
+            <button id="sorryButton" onclick="displayAllSorries()">sorry</button>
         </div>
     </div>
 
