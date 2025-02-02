@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Îmi pare rău!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #F3F3F3;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease-in-out;
+            position: relative;
+        }
+        h1 {
+            color: #013402;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .apology {
+            color: rgb(28, 11, 125);
+            text-align: center;
+            display: none;
+        }
+        #ascii-art {
+            font-family: monospace;
+            white-space: pre;
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+            color: #007bff; 
+        }
+        #ascii-art:hover {
+            transform: scale(1.1);
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExM28yYjRrc2xrc3poNHRuY3luY3M5OHZxOXUzcXp1bWt3ZzNkMXU1ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jyVX5SCxdrKTfsOp77/giphy.gif");
+            background-position: center;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .show-background {
+            opacity: 1;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .show-popup {
+            display: block;
+        }
+        .sorry-button-container {
+            float: right; /* Align the button container to the right */
+        }
+        button#sorryButton {
+            background-color: rgb(3, 84, 34); /* Change button color to red */
+            color: white;
+        }
+        button#sorryButton:hover {
+            background-color: rgb(2, 45, 18); /* Darken color on hover */
+        }
+        button {
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-size: 16px;
+            outline: none;
+        }
+        button:hover {
+            box-shadow: 0 0 20px rgba(1, 40, 16, 0.5);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1>Îmi pare rău, Robert.</h1> <!-- Updated heading -->
+        <p>te rog să apeşi pe gif-ul de mai jos pentru a incepe jocul</p>
+
+        <pre id="ascii-art" onclick="startGame()">
+⠀
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmRzNWVrbWRneWpqbGkyMTd2dm9xYmZmMWpobTRlaXU1eXAxZnB1YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QN3pbR3iinnsGXWUgM/giphy.gif " width="350" height="300" ></img>
+</pre>
+
+        <div class="question" id="question1" style="display: none;">
+            <p>Te rog să te joci obrăznicia asta de joc</p>
+            <p>Alege răspunsul corect!</p>
+            <p>Question 1: Care e culoarea ta preferată?</p>
+            <button onclick="checkAnswer('roz', 1)">roz</button>
+            <button onclick="checkAnswer('galben', 1)">galben</button>
+            <button onclick="checkAnswer('verde', 1)">verde</button>
+            <button onclick="checkAnswer('portocaliu', 1)">portocaliu</button>
+        </div>
+
+        <div class="question" id="question2" style="display: none;">
+            <p>Question 2: Care este profesorul sau profesoara ta preferată?</p>
+            <button onclick="checkAnswer('Cornea', 2)">Cornea</button>
+            <button onclick="checkAnswer('Doamna Mândru', 2)">Doamna Mândru</button>
+            <button onclick="checkAnswer('Baciu', 2)">Baciu</button>
+            <button onclick="checkAnswer('Pintilie', 2)">Pintilie</button>
+        </div>
+
+        <div class="question" id="question3" style="display: none;">
+            <p>Question 3: Care e ora ta preferată?</p>
+            <button onclick="checkAnswer('fizica', 3)">fizica</button>
+            <button onclick="checkAnswer('sportul', 3)">sportul</button>
+            <button onclick="checkAnswer('chimia', 3)">chimia</button>
+            <button onclick="checkAnswer('franceza', 3)">franceza</button>
+        </div>
+
+        <div class="apology" id="apology1">Îmi</div>
+        <div class="apology" id="apology2">pare </div>
+        <div class="apology" id="apology3">rău </div>
+        
+        <div class="sorry-button-container"> <!-- Container for the Sorry button -->
+            <button id="sorryButton" onclick="displayAllSorries()">Sorry</button>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <p>Vreau să ştii că nu am avut niciodată intenţia de a te supăra, Robert. </p>
+    </div>
+
+    <script>
+        var score = 0;
+        var sorryTranslations = [
+            { message: "I am sorry", translation: "Îmi pare rău (Engleză)" },
+            { message: "ごめんなさい", translation: "Îmi pare rău (Japoneză)" },
+            { message: "对不起", translation: "Îmi pare rău (Chineză)" },
+            { message: "Perdón", translation: "Îmi pare rău (Spaniolă)" },
+            { message: "Прошу прощения", translation: "Îmi pare rău (Rusă)" },
+            { message: "Entschuldigung", translation: "Îmi pare rău (Germană)" }
+        ];
+        var currentTranslationIndex = 0;
+
+        function startGame() {
+            document.querySelector('.background').classList.add('show-background');
+            document.getElementById('ascii-art').style.display = 'none';
+            document.getElementById('question1').style.display = 'block';
+        }
+
+        function checkAnswer(answer, questionNumber) {
+            if (questionNumber === 1 && answer === 'verde') {
+                document.getElementById('apology1').style.display = 'inline';
+                score++;
+                document.getElementById('question1').style.display = 'none';
+                document.getElementById('question2').style.display = 'block';
+            } else if (questionNumber === 2 && answer === 'Pintilie') {
+                document.getElementById('apology2').style.display = 'inline';
+                score++;
+                document.getElementById('question2').style.display = 'none';
+                document.getElementById('question3').style.display = 'block';
+            } else if (questionNumber === 3 && answer === 'sportul') {
+                document.getElementById('apology3').style.display = 'inline';
+                score++;
+            }
+            if (score === 3) {
+                document.getElementById('apology3').style.display = 'inline';
+                document.getElementById('sorryButton').disabled = false;
+                setTimeout(function() {
+                    document.getElementById('popup').classList.add('show-popup');
+                }, 500); // Display final message in popup with transition delay
+            }
+        }
+
+        function displayAllSorries() {
+            var allSorries = '';
+            sorryTranslations.forEach(function(sorry) {
+                allSorries += sorry.message + ' - Translation: ' + sorry.translation + '\n';
+            });
+            alert(allSorries);
+        }
+    </script>
+</body>
+</html>
